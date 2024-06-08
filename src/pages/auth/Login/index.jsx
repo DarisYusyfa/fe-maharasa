@@ -32,7 +32,7 @@ export const Login = () => {
           </form>
         </div>
       </div>
-      <div className="hidden md:block bg-cover bg-center w-7/12 relative" style={{ backgroundImage: `url('src/assets/bglogin.png')` }}>
+      <div className="hidden md:block bg-cover h-screen bg-center w-7/12 relative" style={{ backgroundImage: `url('src/assets/bglogin.png')` }}>
         <div className="absolute inset-0 bg-black opacity-50"></div>
       </div>
     </div>
