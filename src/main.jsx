@@ -9,8 +9,8 @@ import { Register } from './pages/auth/Register/index.jsx';
 import { Order } from './pages/services/order/index.jsx';
 import { Table } from './pages/services/table/index.jsx';
 import { Reservasi } from './pages/services/reservasi/index.jsx';
-import { User } from './pages/auth/user/index.jsx';
 import { Menu } from './pages/services/menu/index.jsx';
+import { Event } from './pages/services/event/index.jsx';
 
 export const Router = createBrowserRouter([
   {
@@ -26,7 +26,6 @@ export const Router = createBrowserRouter([
     path: '/register',
     element: <Register />,
   },
-
   {
     path: '/service',
     element: <Service />,
@@ -36,16 +35,16 @@ export const Router = createBrowserRouter([
     element: <Order />,
   },
   {
+    path: '/event',
+    element: <Event />,
+  },
+  {
     path: '/table',
     element: <Table />,
   },
   {
     path: '/reservasi',
     element: <Reservasi />,
-  },
-  {
-    path: '/user',
-    element: <User />,
   },
   {
     path: '/menu',
