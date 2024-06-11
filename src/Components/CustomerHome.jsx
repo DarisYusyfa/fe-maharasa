@@ -29,7 +29,7 @@ export const CustomerHome = () => {
             <div className="w-full md:w-1/2 px-4 mb-10 md:mb-0" data-aos="fade-right">
               <img src="/src/assets/ruang.png" alt="Facility" className="w-120  object-cover mb-4" />
             </div>
-            <div className="w-full md:w-1/2 items-center text-center flex justify-center px-4 text-center" data-aos="fade-left">
+            <div className="w-full md:w-1/2 items-center text-center flex justify-center px-4 r" data-aos="fade-left">
               <h2 className="text-3xl font-semibold  mb-8">
                 Selain itu, rumah makan ini juga dilengkapi dengan dapur yang bersih dan terbuka sehingga pengunjung dapat melihat langsung proses pembuatan makanan.
                 <p />

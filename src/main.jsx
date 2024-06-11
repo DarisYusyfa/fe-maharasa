@@ -11,6 +11,9 @@ import { Table } from './pages/services/table/index.jsx';
 import { Reservasi } from './pages/services/reservasi/index.jsx';
 import { Menu } from './pages/services/menu/index.jsx';
 import { Event } from './pages/services/event/index.jsx';
+import { Pemesanan } from './Admin/pemesanan/index.jsx';
+import { Daftar } from './Admin/authadmin/daftar/index.jsx';
+import { Masuk } from './Admin/authadmin/masuk/index.jsx';
 
 export const Router = createBrowserRouter([
   {
@@ -49,6 +52,18 @@ export const Router = createBrowserRouter([
   {
     path: '/menu',
     element: <Menu />,
+  },
+  {
+    path: '/pemesanan',
+    element: <Pemesanan />,
+  },
+  {
+    path: '/daftar',
+    element: <Daftar />,
+  },
+  {
+    path: '/masuk',
+    element: <Masuk />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
