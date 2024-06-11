@@ -8,9 +8,9 @@ export const Register = () => {
         style={{ backgroundImage: `url('src/assets/bglogin.png')` }}
       >
         <div className="bg-white p-6 rounded-xl shadow-xl w-full md:w-2/3 lg:w-1/3 border border-gray-300">
-          <h2 className="text-2xl mb-4 font-bold text-center">Login</h2>
+          <h2 className="text-2xl mb-4 font-bold text-center">Register</h2>
           <p className="text-center">
-            Sign up ? 
+            Do You Have Account ? 
             <Link to="/login" className="text-blue-500">Login</Link>
           </p>
           <form className="mt-8 space-y-6" action="#">

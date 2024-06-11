@@ -1,95 +1,118 @@
-import { useState } from 'react';
-import { SlCalender } from "react-icons/sl";
-import { MdOutlineTimer } from "react-icons/md";
-import { IoMdPerson } from "react-icons/io";
-import { PiNotepadLight } from "react-icons/pi";
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { FaRegCalendarAlt, FaRegClock, FaUser, FaClipboardList } from 'react-icons/fa';
+import { BsInfoCircle } from 'react-icons/bs';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export const Order = () => {
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [policyChecked, setPolicyChecked] = useState(true);
+  const [offersChecked, setOffersChecked] = useState(true);
+  const [eventDetails, setEventDetails] = useState({
+    date: '',
+    time: '',
+    attendees: '',
+    specialEvent: '',
+  });
 
-  const handlePhoneNumberChange = (e) => {
-    setPhoneNumber(e.target.value);
-  };
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Duration of animation in ms
+      once: true, // Whether animation should happen only once
+    });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Lakukan logika pengiriman verifikasi SMS di sini
-  };
+    const fetchEventDetails = async () => {
+      const data = {
+        date: '19 Desember 2024',
+        time: '19.00',
+        attendees: '2 Orang',
+        specialEvent: 'Acara Khusus',
+      };
+      setEventDetails(data);
+    };
+
+    fetchEventDetails();
+  }, []);
 
   return (
-    <div className="relative h-screen">
-      <div 
-        className="absolute items-center bg-cover justify-center h-screen w-full from-teal-400" 
-        style={{ backgroundImage: `url('src/assets/bglogin.png')` }}
-      >
-        <div className="bg-white p-6 rounded-xl shadow-xl w-full md:w-2/3 lg:w-1/3 border border-gray-300">
-          <h2 className="text-2xl mb-4 font-bold text-center">Informasi Pelanggan</h2>
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <input 
-                type="text" 
-                name="nama" 
-                id="nama" 
-                className="bg-gray-50 border border-gray-300 text-textColor text-sm rounded-lg block w-full p-2.5 shadow-md" 
-                placeholder="Nama..." 
-                required 
-              />
-            </div>
-            <div>
-              <input 
-                type="email" 
-                name="email" 
-                id="email" 
-                className="bg-gray-50 border border-gray-300 text-textColor text-sm rounded-lg block w-full p-2.5 shadow-md" 
-                placeholder="Email..." 
-                required 
-              />
-            </div>
-            <div>
-              <label htmlFor="phone-input" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Phone number:</label>
-              <input 
-                type="text" 
-                id="phone-input" 
-                aria-describedby="helper-text-explanation" 
-                className="bg-gray-50 border border-gray-300 text-textColor text-sm rounded-lg block w-full p-2.5 shadow-md" 
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
-                placeholder="123-456-7890" 
-                required 
-                value={phoneNumber}
-                onChange={handlePhoneNumberChange}
-              />
-             </div>
-             <div className="flex justify-center">
-              </div>
-            </form>
+    <div className="min-h-screen mx-auto p-6 bg-teal-200 shadow-md rounded-lg justify-center items-center">
+      <h1 className="text-xl font-bold mb-4 text-center bg-gray-300 p-3 rounded-md" data-aos="fade-down">
+        Registrasi Form
+      </h1>
+      <form>
+        <div className="mb-6 p-4 bg-gray-100 rounded-lg" data-aos="fade-right">
+          <h2 className="text-lg font-semibold mb-4 text-center">Informasi Pelanggan</h2>
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="name">
+              Nama
+            </label>
+            <input type="text" id="name" name="name" className="w-full border-gray-300 rounded-md shadow-sm" defaultValue="Kirwan Herdiansyah" />
           </div>
-      </div>
-
-      {/* Kolom informasi pelanggan yang dipindahkan ke bawah */}
-      <div className='relative max-h-screen justify-center pt-12'>
-        <div className="bg-white p-6 rounded-xl w-full md:w-2/3 lg:w-1/3 border-bottom">
-          <h2 className="text-2xl mb-4 font-bold text-center">Informasi Pelanggan</h2>
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="relative">
-              <div className="flex items-center">
-                <SlCalender />
-              </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="email">
+              Email
+            </label>
+            <input type="email" id="email" name="email" className="w-full border-gray-300 rounded-md shadow-sm" defaultValue="KirwanHerdiansyah@gmail.com" />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="phone">
+              No Telpn
+            </label>
+            <div className="flex items-center">
+              <span className="mr-2">+62</span>
+              <input type="tel" id="phone" name="phone" className="w-full border-gray-300 rounded-md shadow-sm" defaultValue="8967452241" />
             </div>
-            <div>
-              <MdOutlineTimer />
-            </div>
-            <div>
-              <IoMdPerson />
-            </div>
-            <div>
-              <PiNotepadLight />
-            </div>
-            <div className="flex justify-center">
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
-      {/* Akhir kolom informasi pelanggan yang dipindahkan */}
+
+        <div className="mb-6 p-4 bg-gray-100 rounded-lg" data-aos="fade-left">
+          <h2 className="text-lg font-semibold mb-4 text-center">Detail Acara</h2>
+          <div className="mb-4">
+            <div className="flex items-center mb-2" data-aos="fade-up" data-aos-delay="100">
+              <FaRegCalendarAlt className="mr-2" />
+              <span className="text-gray-700">{eventDetails.date}</span>
+            </div>
+            <div className="flex items-center mb-2 border-t-2" data-aos="fade-up" data-aos-delay="200">
+              <FaRegClock className="mr-2" />
+              <span className="text-gray-700">{eventDetails.time}</span>
+            </div>
+            <div className="flex items-center mb-2 border-t-2" data-aos="fade-up" data-aos-delay="300">
+              <FaUser className="mr-2" />
+              <span className="text-gray-700">{eventDetails.attendees}</span>
+            </div>
+            <div className="flex items-center mb-2 border-t-2 border-b-2" data-aos="fade-up" data-aos-delay="400">
+              <FaClipboardList className="mr-2" />
+              <span className="text-gray-700">{eventDetails.specialEvent}</span>
+              <Link to="/event" className="ml-auto bg-gray-300 p-1 rounded-sm mt-1 mb-1 text-sm">
+                Add +
+              </Link>
+            </div>
+          </div>
+          <div className="mb-4">
+            <div className="flex items-start" data-aos="fade-up" data-aos-delay="500">
+              <input type="checkbox" id="policy" name="policy" className="mt-1" checked={policyChecked} onChange={() => setPolicyChecked(!policyChecked)} />
+              <label className="ml-2 text-gray-700" htmlFor="policy">
+                Acara I agree to the required policy
+                <BsInfoCircle className="inline ml-1" />
+              </label>
+            </div>
+            <div className="flex items-start mt-2" data-aos="fade-up" data-aos-delay="600">
+              <input type="checkbox" id="offers" name="offers" className="mt-1" checked={offersChecked} onChange={() => setOffersChecked(!offersChecked)} />
+              <label className="ml-2 text-gray-700" htmlFor="offers">
+                Receive news and offers for this venue
+                <BsInfoCircle className="inline ml-1" />
+              </label>
+            </div>
+          </div>
+        </div>
+        <Link to="/table">
+          <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600" data-aos="fade-up" data-aos-delay="700">
+            Konfirmasi
+          </button>
+        </Link>
+      </form>
     </div>
   );
 };
+
+export default Order;
