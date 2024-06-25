@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
 
 export const Login = () => {
   return (
@@ -27,6 +28,10 @@ export const Login = () => {
                 <Link to="/service">
                   <button className="w-full md:w-52 px-3 py-2 mb-1 text-base font-bold text-center shadow-md bg-primary hover:bg-secondary text-white bg-black rounded-lg focus:ring-4 focus:ring-blue-300 mx-auto">Login</button>
                 </Link>
+                <button type="button" className="flex items-start w-full md:w-52 px-3 py-2 mt-4 text-base font-bold shadow-md bg-white hover:bg-gray-100 border border-gray-300 text-gray-700 rounded-lg focus:ring-4 focus:ring-blue-300">
+                  <FcGoogle className="w-6 h-6 mr-2" />
+                  Sign in with Google
+                </button>
               </div>
             </form>
           </div>
