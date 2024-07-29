@@ -1,22 +1,50 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../index.css';
 
 export const CustomerHome = () => {
+  const [fadeOut, setFadeOut] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const fadeThreshold = 200;
+      setFadeOut(scrollPosition > fadeThreshold);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup the event listener
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="font-sans">
       {/* Hero Section */}
       <section className="relative" data-aos="fade-up">
         <img src="/src/assets/bghome.png" alt="Hero" className="w-full h-screen object-cover" />
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex  items-center justify-center">
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="text-buttom text-white px-4">
             <h2 className="text-4xl font-bold">Sajian Lezat, Kenangan Tak Terlupakan</h2>
-            <p className="mt-4 text-xl text-left ">
+            <p className="mt-4 text-xl text-left">
               Tersedia cita rasa lezat di Rumah Makan Miharasa! tempat di mana
-              <p />
+              <br />
               setiap suapan menghadirkan kelezatan yang tiada tara. Nikmati pengalaman
-              <p />
+              <br />
               kuliner yang menggugah selera dengan menu-menu istimewa kami.
             </p>
-            <button className="mt-6 px-6 py-3 bg-yellow-400 text-white hover:bg-gray-600 font-bold rounded-xl">Lihat Menu</button>
+            <Link to="/menu">
+              <button className="mt-6 px-6 py-3 bg-yellow-400 text-white hover:bg-gray-600 font-bold rounded-xl">Lihat Menu</button>
+            </Link>
+          </div>
+        </div>
+        {/* Scroll Instruction and Button */}
+        <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center ${fadeOut ? 'fade-out scroll-out' : 'fade-out'}`}>
+          <p className="text-white text-lg mb-2">Scroll Untuk Reservasi</p>
+          <div className="animate-bounce w-8 h-8 border-2 border-white rounded-full flex items-center justify-center">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
           </div>
         </div>
       </section>
@@ -27,12 +55,12 @@ export const CustomerHome = () => {
           <h2 className="text-3xl font-bold text-center mb-8">Fasilitas</h2>
           <div className="flex flex-wrap -mx-4">
             <div className="w-full md:w-1/2 px-4 mb-10 md:mb-0" data-aos="fade-right">
-              <img src="/src/assets/ruang.png" alt="Facility" className="w-120  object-cover mb-4" />
+              <img src="/src/assets/ruang.png" alt="Facility" className="w-120 object-cover mb-4" />
             </div>
-            <div className="w-full md:w-1/2 items-center text-center flex justify-center px-4 r" data-aos="fade-left">
-              <h2 className="text-3xl font-semibold  mb-8">
+            <div className="w-full md:w-1/2 items-center text-center flex justify-center px-4" data-aos="fade-left">
+              <h2 className="text-3xl font-semibold mb-8">
                 Selain itu, rumah makan ini juga dilengkapi dengan dapur yang bersih dan terbuka sehingga pengunjung dapat melihat langsung proses pembuatan makanan.
-                <p />
+                <br />
                 Rumah makan Miharasa juga menyediakan layanan pemesanan untuk acara spesial seperti ulang tahun atau acara keluarga lainnya.
               </h2>
             </div>
@@ -53,7 +81,7 @@ export const CustomerHome = () => {
               </p>
             </div>
             <div className="w-full items-center justify-center md:w-1/2 px-4" data-aos="fade-left">
-              <img src="/src/assets/bgmangkok.jpg"></img>
+              <img src="/src/assets/bgmangkok.jpg" alt="Special Menu" />
             </div>
           </div>
 
@@ -73,7 +101,7 @@ export const CustomerHome = () => {
         <div className="container mx-auto bg-cover h-screen px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Tentang Rumah Makan Maharasa</h2>
           <div className="text-center font-poppins">
-            <img src="/src/assets/bghome.png" alt="About" className=" w-full shadow-md h-120 object-cover rounded-xl" />
+            <img src="/src/assets/bghome.png" alt="About" className="w-full shadow-md h-120 object-cover rounded-xl" />
             <p>
               Rumah Makan Maharasa, terletak di Garut, adalah destinasi kuliner yang menawarkan pengalaman gastronomi yang tak terlupakan. Dengan komitmen untuk menyajikan cita rasa autentik dan berkualitas, kami menggunakan bahan-bahan
               segar dan bumbu-bumbu tradisional yang dipilih dengan teliti. Setiap hidangan kami disajikan dengan penuh kehagatan dan keahlian, menciptakan kenangan yang memikat bagi setiap pengunjung. Dari masakan khas Sunda hingga

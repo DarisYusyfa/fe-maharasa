@@ -16,6 +16,12 @@ export const Event = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (selectedEvent) {
+      localStorage.setItem('selectedEvent', selectedEvent);
+    }
+  }, [selectedEvent]);
+
   const handleEventChange = (event) => {
     setSelectedEvent(event);
   };
@@ -30,7 +36,6 @@ export const Event = () => {
         <button onClick={handleBackClick} className="text-white bg-transparent border border-white py-2 px-4 rounded">
           Keluar
         </button>
-        <button className="text-white bg-transparent border border-white py-2 px-4 rounded">Simpan</button>
       </div>
       <div className="bg-gray-300 p-6 rounded-lg mt-4">
         <div className="grid grid-cols-3 gap-4">

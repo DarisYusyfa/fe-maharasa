@@ -2,25 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Home } from './pages/home/index.jsx';
 import { Login } from './pages/auth/Login/index.jsx';
 import { Service } from './pages/services/index.jsx';
 import { Register } from './pages/auth/Register/index.jsx';
 import { Order } from './pages/services/order/index.jsx';
-import { Table } from './pages/services/table/index.jsx';
 import { Reservasi } from './pages/services/reservasi/index.jsx';
 import { Menu } from './pages/services/menu/index.jsx';
 import { Event } from './pages/services/event/index.jsx';
 import { Pemesanan } from './Admin/pemesanan/index.jsx';
 import { Daftar } from './Admin/authadmin/daftar/index.jsx';
 import { Masuk } from './Admin/authadmin/masuk/index.jsx';
+import ProtectedRoute from './Components/ProtectedRoute.jsx';
+import Confirmation from './Components/Confirmation.jsx';
+
+const clientId = '146868756018-p5t3qlatnf88tu657f899sthgicpq0ua.apps.googleusercontent.com';
 
 export const Router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
   },
-
   {
     path: '/login',
     element: <Login />,
@@ -31,23 +34,23 @@ export const Router = createBrowserRouter([
   },
   {
     path: '/service',
-    element: <Service />,
+    element: <ProtectedRoute element={<Service />} />,
   },
   {
     path: '/order',
-    element: <Order />,
+    element: <ProtectedRoute element={<Order />} />,
   },
   {
     path: '/event',
-    element: <Event />,
-  },
-  {
-    path: '/table',
-    element: <Table />,
+    element: <ProtectedRoute element={<Event />} />,
   },
   {
     path: '/reservasi',
-    element: <Reservasi />,
+    element: <ProtectedRoute element={<Reservasi />} />,
+  },
+  {
+    path: '/confirmation',
+    element: <Confirmation />,
   },
   {
     path: '/menu',
@@ -66,8 +69,11 @@ export const Router = createBrowserRouter([
     element: <Masuk />,
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={Router} />
+    <GoogleOAuthProvider clientId={clientId}>
+      <RouterProvider router={Router} />
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );

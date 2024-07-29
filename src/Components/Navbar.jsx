@@ -1,35 +1,68 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = localStorage.getItem('googleAuthToken');
+    const savedUsername = localStorage.getItem('username'); // Assuming the username is saved as 'username' in localStorage
+    if (token) {
+      setIsAuthenticated(true);
+      setUsername(savedUsername);
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem('googleAuthToken');
+    localStorage.removeItem('username');
+    setIsAuthenticated(false);
+    if (location.pathname === '/service') {
+      navigate('/');
+    } else {
+      navigate('/service');
+    }
+  };
+
   return (
     <nav className="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary">RM Maharasa</span>
+        <span className="self-center text-2xl font-semibold whitespace-nowrap text-primary">RM Maharasa</span>
         <div className="flex md:order-2">
-          <a href="/Register">
-          <button type="button" className="text-primary font-medium rounded-[99px] border-primary border-[1px] text-sm px-[35px] py-2 mx-2 text-center mr-3 md:mr-0">
-            Daftar
-          </button>
-          </a>
-          <a href="/Login">
-          <button type="button" className="text-primary font-medium rounded-[99px] border-primary border-[1px] text-sm px-[35px] py-2 mx-2 text-center mr-3 md:mr-0">
-            Masuk
-          </button>
-          </a>
-          <button
-            type="button"
-            className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
-            onClick={toggleMenu}
-          >
+          {(location.pathname === '/service' || location.pathname === '/') && !isAuthenticated && (
+            <>
+              <Link to="/Register">
+                <button type="button" className="text-primary font-medium rounded-[99px] border-primary border-[1px] text-sm px-[35px] py-2 mx-2 text-center mr-3 md:mr-0">
+                  Daftar
+                </button>
+              </Link>
+              <Link to="/Login">
+                <button type="button" className="text-primary font-medium rounded-[99px] border-primary border-[1px] text-sm px-[35px] py-2 mx-2 text-center mr-3 md:mr-0">
+                  Masuk
+                </button>
+              </Link>
+            </>
+          )}
+          {isAuthenticated && (
+            <div className="flex items-center">
+              {location.pathname === '/service' && <span className="text-primary font-medium mr-2">{username}</span>}
+              <button type="button" className="text-primary font-medium rounded-[99px] border-primary border-[1px] text-sm px-[35px] py-2 mx-2 text-center mr-3 md:mr-0" onClick={handleSignOut}>
+                Keluar
+              </button>
+            </div>
+          )}
+          <button type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200" onClick={toggleMenu}>
             <span className="sr-only">Open main menu</span>
             <svg className="w-6 h-6" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}></path>
             </svg>
           </button>
         </div>

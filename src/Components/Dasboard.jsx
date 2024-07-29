@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { FiSearch, FiFilter, FiMenu, FiX } from 'react-icons/fi';
+import { FiFilter, FiMenu, FiX } from 'react-icons/fi';
 import { AiFillEdit, AiFillDelete, AiOutlineLogout, AiOutlineExport, AiOutlineShareAlt } from 'react-icons/ai';
 import { FaUserCircle } from 'react-icons/fa';
 import { Bar, Doughnut } from 'react-chartjs-2';
@@ -63,19 +63,34 @@ const Dashboard = () => {
   };
 
   const barData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
     datasets: [
       {
-        label: 'Monthly Sales',
-        data: [300, 500, 400, 700, 600, 800],
-        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        label: 'Penjualan',
+        data: [50, 70, 60, 90, 50],
+        backgroundColor: 'rgba(0, 0, 255, 0.5)',
+        borderColor: 'rgba(0, 0, 255, 1)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Pemesanan',
+        data: [80, 100, 70, 60, 90],
+        backgroundColor: 'rgba(128, 0, 128, 0.5)',
+        borderColor: 'rgba(128, 0, 128, 1)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Reservasi',
+        data: [60, 90, 70, 60, 100],
+        backgroundColor: 'rgba(0, 255, 0, 0.5)',
+        borderColor: 'rgba(0, 255, 0, 1)',
         borderWidth: 1,
       },
     ],
   };
 
   const barOptions = {
+    indexAxis: 'y',
     responsive: true,
     plugins: {
       legend: {
@@ -83,9 +98,15 @@ const Dashboard = () => {
       },
       title: {
         display: true,
-        text: 'Monthly Sales Data',
+        text: 'Total Data Keseluruhan',
       },
     },
+    scales: {
+      x: {
+        beginAtZero: true,
+      },
+    },
+    maintainAspectRatio: false,
   };
 
   const doughnutData = {
@@ -108,14 +129,6 @@ const Dashboard = () => {
     },
     maintainAspectRatio: false,
   };
-
-  const productList = [
-    { id: 1, title: 'Product A' },
-    { id: 2, title: 'Product B' },
-    { id: 3, title: 'Product C' },
-    { id: 4, title: 'Product D' },
-    { id: 5, title: 'Product E' },
-  ];
 
   return (
     <div className="flex min-h-screen">
@@ -157,11 +170,7 @@ const Dashboard = () => {
       <main className={`flex-1 p-4 bg-white transition-all duration-300 ${isNavOpen ? 'ml-64' : 'ml-0 lg:ml-64'}`}>
         <header className="flex justify-between items-center mb-8 border-b-2 pb-4">
           <div className="lg:hidden">{isNavOpen ? <FiX className="text-2xl cursor-pointer" onClick={() => setIsNavOpen(false)} /> : <FiMenu className="text-2xl cursor-pointer" onClick={() => setIsNavOpen(true)} />}</div>
-          <div className="lg:hidden flex items-center"></div>
-          <div className="hidden lg:flex items-center relative lg:w-auto">
-            <input type="text" placeholder={`Cari ${dataType === 'pemesanan' ? 'Pemesanan' : dataType === 'penjualan' ? 'Penjualan' : 'Reservasi'}`} className="px-4 py-2 border rounded-lg lg:w-auto" />
-            <FiSearch className="absolute right-3 top-3 text-gray-500" />
-          </div>
+          <div className="flex-1"></div> {/* This div will push the next div to the right on larger screens */}
           <div className="flex items-center text-sm relative">
             <FaUserCircle className="text-xl text-gray-700 cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)} />
             <span className="ml-2 text-md lg:text-xl cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
@@ -180,7 +189,6 @@ const Dashboard = () => {
         {dataType === 'dashboard' && (
           <div>
             <h1 className="text-2xl font-semibold pb-2 mb-4">Dashboard</h1>
-
             <div className="flex justify-end space-x-4 mb-4">
               <button onClick={handleExport} className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center">
                 <AiOutlineExport className="mr-2" /> Export
@@ -223,29 +231,55 @@ const Dashboard = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-              <div className="bg-white border rounded-lg p-4 shadow-sm">
+              <div className="bg-white border rounded-lg p-4 shadow-sm" style={{ height: '400px' }}>
                 <h2 className="text-lg font-semibold mb-2">Total Data Keseluruhan</h2>
                 <div className="chart-container" style={{ height: '300px' }}>
                   <Bar data={barData} options={barOptions} />
                 </div>
               </div>
-              <div className="bg-white border rounded-lg p-4 shadow-sm">
+              <div className="bg-white border rounded-lg p-4 shadow-sm" style={{ height: '400px' }}>
                 <h2 className="text-lg font-semibold mb-2">Total Data Keseluruhan</h2>
                 <div className="chart-container" style={{ height: '300px' }}>
                   <Doughnut data={doughnutData} options={doughnutOptions} />
                 </div>
               </div>
             </div>
-            <div className="bg-white border rounded-lg p-4 shadow-sm">
-              <h2 className="text-lg font-semibold mb-2">Top Products</h2>
-              <ul>
-                {productList.map((product) => (
-                  <li key={product.id} className="flex justify-between py-2 border-b last:border-0">
-                    <span>{product.title}</span>
-                    <span>10 sold</span>
-                  </li>
-                ))}
-              </ul>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+              <div className="bg-white border rounded-lg p-4 shadow-sm col-start-2 row-start-2 lg:row-start-1">
+                <h2 className="text-lg font-semibold mb-2">Pelanggan</h2>
+                <div className="chart-container" style={{ height: '300px' }}>
+                  <table className="w-full table-auto border-collapse border border-gray-200">
+                    <thead className="bg-gray-100">
+                      <tr>
+                        <th className="border border-gray-200 p-2">No</th>
+                        <th className="border border-gray-200 p-2">Pelanggan</th>
+                        <th className="border border-gray-200 p-2">Tanggal Bergabung</th>
+                        <th className="border border-gray-200 p-2">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { no: 1, pelanggan: 'Daris Yudifsa Kusuma', tanggal: '17-09-2024' },
+                        { no: 2, pelanggan: 'Rafdi Nur Kusuma', tanggal: '19-09-2024' },
+                        { no: 3, pelanggan: 'Kusuma Febriadi', tanggal: '18-09-2024' },
+                        { no: 4, pelanggan: 'Fazlurr', tanggal: '20-09-2024' },
+                        { no: 5, pelanggan: 'Kirwan Hedian', tanggal: '27-09-2024' },
+                      ].map((item) => (
+                        <tr key={item.no}>
+                          <td className="border border-gray-200 p-2">{item.no}</td>
+                          <td className="border border-gray-200 p-2">{item.pelanggan}</td>
+                          <td className="border border-gray-200 p-2">{item.tanggal}</td>
+                          <td className="border border-gray-200 p-2">
+                            <AiFillEdit className="inline mr-2 cursor-pointer" />
+                            <AiFillDelete className="inline cursor-pointer" />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -342,7 +376,6 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-
         {dataType === 'penjualan' && (
           <div>
             <h1 className="text-2xl font-semibold pb-2 mb-4">Penjualan</h1>
