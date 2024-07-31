@@ -79,7 +79,7 @@ export const Booking = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-200 p-4 sm:p-6 lg:p-8">
-      <h2 className="text-2xl font-bold mb-4 mt-4 text-center">FORM PENGISIAN RESERVASI</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4 font-Lusitana text-center">FORM PENGISIAN RESERVASI</h2>
       <div className="flex flex-col lg:flex-row w-full max-w-6xl">
         <div className="relative shadow-2xl bg-white rounded-lg px-10 pt-8 pb-8 w-full lg:w-1/2 lg:mr-4 mb-8 lg:mb-0">
           <div className="mb-4">

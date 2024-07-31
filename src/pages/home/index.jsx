@@ -7,6 +7,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Navbar from '../../Components/Navbar';
 import { Footer } from '../../Components/Footer';
+import { RxMargin } from 'react-icons/rx';
 
 export const Home = () => {
   useEffect(() => {
@@ -49,20 +50,25 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-300 mx-1">
-        <header className="bg-cover bg-center h-screen text-white" style={{ backgroundImage: `url('/src/assets/bghome.png')` }}>
-          <div className="bg-black bg-opacity-50 h-full flex flex-col justify-center items-center">
-            <h1 className="text-5xl font-bold justify-center text-center">Sajian Lezat, Kenangan Tak Terlupakan</h1>
-            <p className="mt-4 text-lg text-center max-w-xl">
-              Tersedia cita rasa lezat di Rumah Makan Maharasa! Tempat di mana setiap suapan menghadirkan kelezatan yang tiada tara. Nikmati pengalaman kuliner yang menggugah selera dengan menu-menu istimewa kami.
+      <div id='home' className="bg-gray-300  overflow-hidden">
+        <div className="  bg-white  bg-opacity-50 flex items-center h-screen">
+          <div className=" h-full flex flex-col justify-center items-stretch">
+            <h1 className="lg:text-[56px] font-Poppins font-semibold  ml-[2rem] text-black sm:text-[20px]"> Sajian Lezat, Kenangan Tak Terlupakan</h1>
+            <p className="mt-4 lg:text-lg text-left text-black font-bold max-w-md ml-[2rem] md:text-[1rem]">
+              Tersedia cita rasa lezat di Rumah Makan Maharasa! Tempat di mana setiap suapan menghadirkan kelezatan yang tiada tara. Nikmati pengalaman kuliner yang menggugah selera dengan menu-menu istimewa kami"
             </p>
-            <Link to="/menu">
-              <button className="mt-6 px-6 py-2 bg-yellow-500 text-white font-semibold rounded">Lihat Menu</button>
-            </Link>
+              <Link to="/menu">
+              <button className="px-[25px] hover:bg-blue-900 rounded-[8px] py-1 mt-[40px] ml-[2rem] bg-purple-950 text-white font-semibold ">Lihat Menu</button>
+               </Link>
           </div>
-        </header>
+         <div className=' mt-[2rem]'>
+          <figure>
+            <img src="/src/assets/design.png" alt="food" srcset="" />
+          </figure>
+         </div>
+      </div>
 
-        <section className="py-12 text-center bg-lime-200">
+        <section className="py-12 text-center bg-white  bg-opacity-50">
           <h2 className="text-3xl font-bold font-Poppins">Now Open</h2>
           <p className="mt-4 text-3xl font-bold font-Poppins">Rumah Makan Maharasa</p>
           <p className="text-xl font-semibold font-Poppins mt-2">Alamat: Tarogong, South Tarogong, Garut Regency, West Java</p>
@@ -70,7 +76,7 @@ export const Home = () => {
           <p className="text-xl font-semibold font-Poppins">Telepon: 0853-1422-7944</p>
         </section>
 
-        <section className="py-12 bg-lime-200" data-aos="fade-up">
+        <section id='Fasilitas' className="py-12 bg-white  bg-opacity-50" data-aos="fade-up">
           <div className="max-w-6xl mx-auto p-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-gray-100 rounded-t-2xl shadow-xl overflow-hidden" data-aos="fade-up">
               <img src="/src/assets/ruang.png" alt="VIP Room" className="w-full h-48 object-cover p-2 rounded-2xl shadow-2xl" />
@@ -103,55 +109,56 @@ export const Home = () => {
           </div>
         </section>
 
-        <h2 className="text-3xl font-bold text-center p-6 text-gray-800 bg-yellow-400 shadow-xl mb-1">Menu yang Tersedia</h2>
-
-        <section className="py-12 bg-lime-200">
-          <div className="max-6xl mx-auto">
-            <Slider {...settings}>
+          <div className="py-12 pt-10 bg-white bg-opacity-50">
+          <h2 className="text-3xl font-bold font-Lusitana ml-[3rem]  p-6 text-black-800">MENU  YANG TERSEDIA</h2>
+           <div className="  mt-[1rem]">
+             <Slider {...settings}>
               <div className="px-2">
-                <div className="bg-white rounded shadow-lg overflow-hidden">
-                  <img src="/src/assets/eskopi.png" alt="Menu 1" className="w-full h-64 sm:h-34 lg:h-64 xl:h-64 object-cover p-2 rounded-xl" />
+                <div className=" overflow-hidden">
+                  <img src="/src/assets/eskopi.png" alt="Menu 1" className="w-[287px] h-64 sm:h-34 lg:h-64 xl:h-64  p-2 rounded-xl" />
                 </div>
               </div>
               <div className="px-2">
-                <div className="bg-white rounded shadow-lg overflow-hidden">
-                  <img src="/src/assets/jusjeruk.png" alt="Menu 2" className="w-full h-64 sm:h-34 lg:h-64 xl:h-64 object-cover p-2 rounded-xl" />
+                <div className=" overflow-hidden">
+                  <img src="/src/assets/jusjeruk.png" alt="Menu 2" className="w-[287px] h-64 sm:h-34 lg:h-64 xl:h-64  p-2 rounded-xl" />
                 </div>
               </div>
               <div className="px-2">
-                <div className="bg-white rounded shadow-lg overflow-hidden">
-                  <img src="/src/assets/jusnaga.png" alt="Menu 3" className="w-full h-64 sm:h-34 lg:h-64 xl:h-64 object-cover p-2 rounded-xl" />
+                <div className=" overflow-hidden">
+                  <img src="/src/assets/jusnaga.png" alt="Menu 3" className="w-[287px] h-64 sm:h-34 lg:h-64 xl:h-64  p-2 rounded-xl" />
                 </div>
               </div>
               <div className="px-2">
-                <div className="bg-white rounded shadow-lg overflow-hidden">
-                  <img src="/src/assets/kopi.png" alt="Menu 4" className="w-full h-64 sm:h-34 lg:h-64 xl:h-64 object-cover p-2 rounded-xl" />
+                <div className=" overflow-hidden">
+                  <img src="/src/assets/kopi.png" alt="Menu 4" className="w-[287px] h-64 sm:h-34 lg:h-64 xl:h-64  p-2 rounded-xl" />
                 </div>
               </div>
               <div className="px-2">
-                <div className="bg-white rounded shadow-lg overflow-hidden">
-                  <img src="/src/assets/ayambakar.png" alt="Menu 4" className="w-full h-64 sm:h-34 lg:h-64 xl:h-64 object-cover p-2 rounded-xl" />
+                <div className=" overflow-hidden">
+                  <img src="/src/assets/ayambakar.png" alt="Menu 4" className="w-[287px] h-64 sm:h-34 lg:h-64 xl:h-64  p-2 rounded-xl" />
                 </div>
               </div>
-            </Slider>
+             </Slider>
+           </div>
           </div>
-        </section>
-
-        <h2 className="text-3xl font-bold text-center p-2 text-gray-800 bg-yellow-400 shadow-xl mb-1">
-          Tentang
-          <br /> Rumah Makan Maharasa
-        </h2>
-        <div className="min-h-screen bg-center bg-cover p-2" style={{ backgroundImage: `url('/src/assets/bgtentang.png')` }}>
-          <div className="flex items-center justify-center min-h-screen">
-            <div className="bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg p-6 md:p-20 rounded-lg max-w-6xl mx-auto text-black text-center shadow-lg text-lg md:text-2xl">
-              <p>
+            {/* About Section */}
+        <div id='About' className=" min-h-screen bg-center bg-cover flex items-center bg-white bg-opacity-50">
+           <div className='w-[40%] px-6'>
+              <figure>
+                <img src="/src/assets/desain1.png" alt="" />
+              </figure>
+            </div>
+            <div className=" backdrop-filter backdrop-blur-lg p-6 md:p-20 rounded-lg max-w-6xl mx-auto  text-black text-center  text-lg md:text-2xl">
+              <h2 className=" font-Lusitana w-screen text-3xl max-w-[20rem] ml-[7rem]  font-bold  p-2 text-gray-800 ">
+               Tentang Rumah Makan Maharasa
+              </h2>
+              <p className='text-left max-w-[40rem] text-[1rem]'>
                 Rumah Makan Maharasa, terletak di Garut, adalah destinasi kuliner yang menawarkan pengalaman gastronomi yang tak terlupakan. Dengan komitmen untuk menyajikan cita rasa autentik dan berkualitas, kami menggunakan bahan-bahan
                 segar dan bumbu-bumbu tradisional yang dipilih dengan teliti. Setiap hidangan kami disajikan dengan penuh kehangatan dan keahlian, menciptakan kenangan yang memikat bagi setiap pengunjung. Dari masakan khas Sunda hingga
                 hidangan modern dengan sentuhan lokal, Rumah Makan Maharasa menyediakan pilihan menu yang memuaskan selera setiap tamu. Kami bangga menjadi bagian dari komunitas kuliner Garut dan berkomitmen untuk terus memberikan
                 pengalaman makan yang istimewa bagi semua pelanggan kami.
               </p>
             </div>
-          </div>
         </div>
 
         <Footer />

@@ -44,19 +44,19 @@ export const Login = () => {
   });
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex flex-item-center md:flex-row min-h-screen">
       <motion.div
-        className="hidden md:block bg-cover h-screen bg-center w-7/12 relative"
-        style={{ backgroundImage: `url('src/assets/bglogin.png')` }}
+        className="hidden md:block bg-cover  w-screen relative"
+        style={{ backgroundImage: `url('src/assets/Azul_3.png')` }}
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+
       </motion.div>
-      <motion.div className="flex items-center h-screen justify-center w-full md:w-5/12 p-4 bg-gradient-to-r from-teal-400" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
+      <motion.div className="flex  items-center lg:absolute md:relative sm:relative ml-[21rem] h-screen justify-center w-full md:w-5/12 p-4 " initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
         <motion.div
-          className="bg-white p-6 rounded-xl shadow-xl w-full md:w-2/3 border border-gray-300 transform md:translate-x-0 md:translate-y-0 z-40"
+          className="bg-blue-300   p-6 rounded-xl shadow-xl w-full md:w-2/3 border-[0.3rem] border-white transform md:translate-x-0 md:translate-y-0 z-40"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}

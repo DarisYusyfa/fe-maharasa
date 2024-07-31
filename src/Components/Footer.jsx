@@ -1,19 +1,19 @@
 export const Footer = () => {
   return (
-    <footer className="bg-yellow-400 text-black relative">
+    <footer id="Contact" className="bg-black text-white relative">
       <section id="contact" className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href="#" className="flex items-center">
-              <img src="src/assets/logo.png" className="h-8 me-3" alt="FlowBite Logo" />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">Maharasa</span>
-            </a>
+           <figure>
+            <img src="/src/assets/logo_4.png" alt="logoperushaan" />
+            <figcaption className="max-w-[25rem] pt-5">Rumah Makan Maharasa di Garut menawarkan cita rasa autentik dengan menu khas Sunda yang menggugah selera.</figcaption>
+           </figure>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-black uppercase text-bold dark:text-black">Usefull Links</h2>
-              <ul className="text-black font-medium">
-                <a href="#" className="hover:underline">
+              <h2 className="mb-6 text-sm font-semibold text-white uppercase text-bold dark:text-white">Usefull Links</h2>
+              <ul className="text-white font-medium space-y-2">
+                <a href="#" className="hover:underline ">
                   About Us
                 </a>
                 <li>
@@ -34,16 +34,16 @@ export const Footer = () => {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-black">Contact</h2>
-              <ul className="text-black  font-medium">
+              <h2 className="mb-6 text-sm font-semibold text- uppercase dark:text-white">Contact</h2>
+              <ul className="text-white  font-medium space-y-2">
                 <a href="#" className="hover:underline">
                   0853-1422-7944
                 </a>
                 <li>
                   <a href="#" className="hover:underline">
                     Tarogong, South Tarogong,
-                    <p />
-                    Garut Regency, West Java
+                    <a />
+                    <p>Garut Regency, West Java</p>
                   </a>
                 </li>
               </ul>
@@ -52,10 +52,10 @@ export const Footer = () => {
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-black sm:text-center">
+          <span className="text-sm text-white sm:text-center">
             © 2024 <a href="#" className="hover:underline"></a>. All Rights Reserved.
           </span>
-          <div className="flex mt-4 sm:justify-center sm:mt-0">
+          <div className="flex mt-1 sm:justify-center sm:mt-0">
             <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
               <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
                 <path fillRule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clipRule="evenodd" />
@@ -105,6 +105,11 @@ export const Footer = () => {
           </form>
         </div>
       </section>
+      <div className="bg-blue-900 text-center font-Lusitana font-extrabold">
+        <p>
+            Copy Right Kelompok 5
+        </p>
+      </div>
     </footer>
   );
 };
