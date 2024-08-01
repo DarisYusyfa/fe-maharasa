@@ -55,3 +55,46 @@ html {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+@font-face {
+  font-family: 'Marck Script';
+  src: url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+}
+
+.font-marck-script {
+  font-family: 'Marck Script', cursive;
+}
+
+/* Pastikan tombol kategori di pusatkan dan dapat di-scroll */
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+
+.tabs-container button {
+  flex: 0 0 auto;
+  margin: 0 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #4a90e2; /* Warna tombol */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Warna tombol saat aktif */
+.tabs-container button.active {
+  background-color: #007bff; /* Warna tombol aktif */
+}
+
+/* Ubah ukuran tombol dan teks pada perangkat kecil */
+@media (max-width: 768px) {
+  .tabs-container button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
