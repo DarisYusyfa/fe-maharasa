@@ -40,12 +40,12 @@ const Navbar = () => {
           {(location.pathname === '/service' || location.pathname === '/') && !isAuthenticated && (
             <>
               <Link to="/Register">
-                <button type="button" className="text-primary bg-yellow-400 font-medium rounded-[99px] border-primary border-[1px] text-sm px-[30px] py-1 mx-[2rem] hover:bg-yellow-300  text-center mr-[5rem] md:mr-0">
+                <button type="button" className="text-primary bg-yellow-400 font-medium rounded-[99px] border-primary border-[1px] text-sm px-[30px] py-1 mx-[2rem] hover:bg-yellow-300  text-center mr-[5rem] md:mr-auto sm:mr-auto">
                   Daftar
                 </button>
               </Link>
               <Link to="/Login">
-                <button type="button" className="text-primary bg-yellow-400 font-medium rounded-[99px] border-primary border-[1px] text-sm px-[30px] py-1 mx-[1rem] hover:bg-yellow-300 text-center mr-[9rem] md:mr-0">
+                <button type="button" className="text-primary  bg-yellow-400 font-medium rounded-[99px] border-primary border-[1px] text-sm px-[30px] py-1 mx-[1rem] hover:bg-yellow-300 text-center mr-[9rem] sm:mr-[20rem] md:mr-auto">
                   Masuk
                 </button>
               </Link>
@@ -67,7 +67,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className={`items-center justify-between ${isOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`} id="navbar-sticky">
-          <ul className="flex flex-col font p-4 md:p-0 mt-4 font-bold border border-gray-100 rounded-[99px]  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
+          <ul className="text-[1rem] flex flex-col font p-4 md:p-0 mt-4 font-bold border border-gray-100 rounded-[99px]  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
             <li>
               <a href="/#home" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">
                 Home

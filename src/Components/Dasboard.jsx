@@ -188,7 +188,7 @@ const Dashboard = () => {
 
         {dataType === 'dashboard' && (
           <div>
-            <h1 className="text-2xl font-semibold pb-2 mb-4">Dashboard</h1>
+            <h1 className="text-[2rem] font-semibold font-Lusitana pb-2 mb-4">Dashboard</h1>
             <div className="flex justify-end space-x-4 mb-4">
               <button onClick={handleExport} className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center">
                 <AiOutlineExport className="mr-2" /> Export

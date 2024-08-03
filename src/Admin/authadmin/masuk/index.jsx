@@ -4,11 +4,11 @@ export const Masuk = () => {
   return (
     <div className="relative h-screen">
       <div className="flex items-center bg-cover justify-center h-screen w-full from-teal-400" style={{ backgroundImage: `url('src/assets/bglogin.png')` }}>
-        <div className="bg-white p-6 rounded-xl shadow-xl w-full md:w-2/3 lg:w-1/3 border border-gray-300">
+        <div className="bg-blue-400 p-6 rounded-xl shadow-xl w-full md:w-2/3 lg:w-1/3 border border-gray-300">
           <h2 className="text-2xl mb-4 font-bold text-center">Login Admin</h2>
           <p className="text-center">
             Do You Havent Account ?
-            <Link to="/daftar" className="text-blue-500">
+            <Link to="/daftar" className="text-white">
               Register
             </Link>
           </p>

@@ -17,7 +17,7 @@ export const Confirmation = () => {
           </svg>
         </div>
         <h2 className="mt-4 text-2xl font-bold text-green-800" data-aos="fade-up">
-          Pesanan Berhasil!
+          Pesanan Berhasil!hh
         </h2>
         <p className="mt-2 text-green-700" data-aos="fade-up" data-aos-delay="100">
           Reservasi Anda telah berhasil dipesan.

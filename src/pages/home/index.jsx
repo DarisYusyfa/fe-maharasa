@@ -50,18 +50,18 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      <div id='home' className="bg-gray-300  overflow-hidden">
-        <div className="  bg-white  bg-opacity-50 flex items-center h-screen">
-          <div className=" h-full flex flex-col justify-center items-stretch">
-            <h1 className="lg:text-[56px] font-Poppins font-semibold  ml-[2rem] text-black sm:text-[20px]"> Sajian Lezat, Kenangan Tak Terlupakan</h1>
-            <p className="mt-4 lg:text-lg text-left text-black font-bold max-w-md ml-[2rem] md:text-[1rem]">
+      <div id='home' className="bg-gray-300  overflow-hidden ">
+        <div className="  bg-white  bg-opacity-50 flex items-center h-screen  ">
+          <div className=" h-full flex flex-col justify-center items-stretch sm:mb-[4rem] ">
+            <h1 className="lg:text-[40px] font-Poppins font-semibold  ml-[2rem] text-black sm:text-[40px]"> Sajian Lezat, Kenangan Tak Terlupakan</h1>
+            <p className="mt-4 lg:text-lg text-left  text-black font-bold max-w-md ml-[2rem] md:text-[1.1rem] lg:text-[1.1rem] ">
               Tersedia cita rasa lezat di Rumah Makan Maharasa! Tempat di mana setiap suapan menghadirkan kelezatan yang tiada tara. Nikmati pengalaman kuliner yang menggugah selera dengan menu-menu istimewa kami"
             </p>
               <Link to="/menu">
               <button className="px-[25px] hover:bg-blue-900 rounded-[8px] py-1 mt-[40px] ml-[2rem] bg-purple-950 text-white font-semibold ">Lihat Menu</button>
                </Link>
           </div>
-         <div className=' mt-[2rem]'>
+         <div className='mt-[2rem] '>
           <figure>
             <img src="/src/assets/design.png" alt="food" srcset="" />
           </figure>
@@ -143,23 +143,23 @@ export const Home = () => {
           </div>
             {/* About Section */}
         <div id='About' className=" min-h-screen bg-center bg-cover flex items-center bg-white bg-opacity-50">
-           <div className='w-[40%] px-6'>
+           <div className='w-auto px-6'>
               <figure>
                 <img src="/src/assets/desain1.png" alt="" />
               </figure>
             </div>
-            <div className=" backdrop-filter backdrop-blur-lg p-6 md:p-20 rounded-lg max-w-6xl mx-auto  text-black text-center  text-lg md:text-2xl">
-              <h2 className=" font-Lusitana w-screen text-3xl max-w-[20rem] ml-[7rem]  font-bold  p-2 text-gray-800 ">
+            <div className=" backdrop-filter  backdrop-blur-lg p-6 md:p-20 rounded-lg max-w-[50rem] mx-auto sm:max-w-screen-sm  text-black text-left sm:text-left  text-lg md:text-2xl">
+              <h2 className="  font-Lusitana w-screen text-3xl max-w-[20rem] sm:ml-1 md:ml-[7rem] lg:ml-[7rem]  font-bold  p-2 text-gray-800 ">
                Tentang Rumah Makan Maharasa
               </h2>
-              <p className='text-left max-w-[40rem] text-[1rem]'>
+              <p className='text-left  text-[1rem]'>
                 Rumah Makan Maharasa, terletak di Garut, adalah destinasi kuliner yang menawarkan pengalaman gastronomi yang tak terlupakan. Dengan komitmen untuk menyajikan cita rasa autentik dan berkualitas, kami menggunakan bahan-bahan
                 segar dan bumbu-bumbu tradisional yang dipilih dengan teliti. Setiap hidangan kami disajikan dengan penuh kehangatan dan keahlian, menciptakan kenangan yang memikat bagi setiap pengunjung. Dari masakan khas Sunda hingga
                 hidangan modern dengan sentuhan lokal, Rumah Makan Maharasa menyediakan pilihan menu yang memuaskan selera setiap tamu. Kami bangga menjadi bagian dari komunitas kuliner Garut dan berkomitmen untuk terus memberikan
                 pengalaman makan yang istimewa bagi semua pelanggan kami.
               </p>
             </div>
-        </div>
+        </div> 
 
         <Footer />
       </div>

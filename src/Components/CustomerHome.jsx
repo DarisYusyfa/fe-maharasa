@@ -29,7 +29,7 @@ export const CustomerHome = () => {
               Tersedia cita rasa lezat di Rumah Makan Maharasa! Tempat di mana setiap suapan menghadirkan kelezatan yang tiada tara. Nikmati pengalaman kuliner yang menggugah selera dengan menu-menu istimewa kami"
             </p>
               <Link to="/menu">
-              <button className="px-[25px] hover:bg-blue-900 rounded-[8px] py-1 mt-[40px]  bg-purple-950 text-white font-semibold ">Lihat Menu</button>
+              <button className="ml-[2rem] px-[25px] hover:bg-blue-900 rounded-[8px] py-1 mt-[40px]  bg-purple-950 text-white font-semibold ">Lihat Menu</button>
                </Link>
           </div>
          <div className=' mt-[2rem]'>
