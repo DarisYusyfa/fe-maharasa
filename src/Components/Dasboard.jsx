@@ -208,7 +208,7 @@ const Dashboard = () => {
       >
         <div className="flex items-center mb-8">
           <img
-            src="/src/assets/logoadmin.png"
+            src="/assets/logoadmin.png"
             alt="Logo"
             className="h-13 w-13 mr-1"
           />
