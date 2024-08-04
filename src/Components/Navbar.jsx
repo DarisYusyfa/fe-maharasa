@@ -1,96 +1,127 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState('');
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoggedIn] = useState(true); // Simulasi login state
   const location = useLocation();
-
-  useEffect(() => {
-    const token = localStorage.getItem('googleAuthToken');
-    const savedUsername = localStorage.getItem('username'); // Assuming the username is saved as 'username' in localStorage
-    if (token) {
-      setIsAuthenticated(true);
-      setUsername(savedUsername);
-    }
-  }, []);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSignOut = () => {
-    localStorage.removeItem('googleAuthToken');
-    localStorage.removeItem('username');
-    setIsAuthenticated(false);
-    if (location.pathname === '/service') {
-      navigate('/');
+  const handleReservasiClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleUserChoice = (role) => {
+    setIsModalOpen(false);
+    if (role === 'admin') {
+      navigate('/Daftar');
     } else {
-      navigate('/service');
+      navigate('/register');
     }
   };
 
+  const isServicePage = location.pathname === '/service'; // Sesuaikan dengan rute halaman service Anda
+
   return (
-    <nav className="bg-gray-200 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <span className="self-center text-[20px] font-Poppins font-semibold whitespace-nowrap text-primary">Rumah Makan Maharasa</span>
-        <div className="flex md:order-2 ml-[2rem]">
-          {(location.pathname === '/service' || location.pathname === '/') && !isAuthenticated && (
-            <>
-              <Link to="/Register">
-                <button type="button" className="text-primary bg-yellow-400 font-medium rounded-[99px] border-primary border-[1px] text-sm px-[30px] py-1 mx-[2rem] hover:bg-yellow-300  text-center mr-[5rem] md:mr-auto sm:mr-auto">
-                  Daftar
-                </button>
-              </Link>
-              <Link to="/Login">
-                <button type="button" className="text-primary  bg-yellow-400 font-medium rounded-[99px] border-primary border-[1px] text-sm px-[30px] py-1 mx-[1rem] hover:bg-yellow-300 text-center mr-[9rem] sm:mr-[20rem] md:mr-auto">
-                  Masuk
-                </button>
-              </Link>
-            </>
-          )}
-          {isAuthenticated && (
-            <div className="flex items-center">
-              {location.pathname === '/service' && <span className="text-primary font-medium mr-2">{username}</span>}
-              <button type="button" className="text-primary font-medium rounded-[99px] border-primary border-[1px] text-sm px-[35px] py-2 mx-2 text-center mr-3 md:mr-0" onClick={handleSignOut}>
-                Keluar
-              </button>
-            </div>
-          )}
-          <button type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200" onClick={toggleMenu}>
-            <span className="sr-only">Open main menu</span>
-            <svg className="w-6 h-6" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}></path>
-            </svg>
+    <nav className="bg-gray-200 shadow-md py-4 fixed top-0 left-0 w-full z-50">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="md:hidden mx-3">
+          <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
-        <div className={`items-center justify-between ${isOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`} id="navbar-sticky">
-          <ul className="text-[1rem] flex flex-col font p-4 md:p-0 mt-4 font-bold border border-gray-100 rounded-[99px]  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
-            <li>
-              <a href="/#home" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/#About" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="/#Fasilitas" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">
-                Fasilitas
-              </a>
-            </li>
-            <li>
-              <a href="/#contact" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0">
-                Contact
-              </a>
-            </li>
-          </ul>
+        <div className="hidden md:flex items-center space-x-2">
+          <div>
+            <span className="text-gray-800 text-xl font-bold">Rumah Makan Maharasa</span>
+          </div>
+        </div>
+        <div className="hidden md:flex space-x-8">
+          <a href="/#home" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+            Home
+          </a>
+          <a href="/#About" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+            About
+          </a>
+          <a href="/#Fasilitas" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+            Fasilitas
+          </a>
+          <a href="/#contact" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+            Contact
+          </a>
+        </div>
+        <div className="hidden md:block">
+          {isLoggedIn && isServicePage ? (
+            <button
+              onClick={() => {
+                /* Logic untuk logout */
+                navigate('/');
+              }}
+              className="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-700 transition-colors duration-300"
+            >
+              Keluar
+            </button>
+          ) : (
+            <button onClick={handleReservasiClick} className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300">
+              Reservasi Sekarang →
+            </button>
+          )}
         </div>
       </div>
+      {isOpen && (
+        <div className="md:hidden mt-4 px-6">
+          <a href="/#home" className="block text-gray-600 hover:text-gray-900 py-2 transition-colors duration-300">
+            Home
+          </a>
+          <a href="/#About" className="block text-gray-600 hover:text-gray-900 py-2 transition-colors duration-300">
+            About
+          </a>
+          <a href="/#Fasilitas" className="block text-gray-600 hover:text-gray-900 py-2 transition-colors duration-300">
+            Fasilitas
+          </a>
+          <a href="/#contact" className="block text-gray-600 hover:text-gray-900 py-2 transition-colors duration-300">
+            Contact
+          </a>
+          {isLoggedIn && isServicePage ? (
+            <button
+              onClick={() => {
+                /* Logic untuk logout */
+                navigate('/');
+              }}
+              className="block bg-red-500 text-white px-4 py-2 rounded-full text-center mt-2 hover:bg-red-700 transition-colors duration-300"
+            >
+              Keluar
+            </button>
+          ) : (
+            <button onClick={handleReservasiClick} className="block bg-blue-500 text-white px-4 py-2 rounded-full text-center mt-2 hover:bg-blue-700 transition-colors duration-300">
+              Reservasi Sekarang →
+            </button>
+          )}
+        </div>
+      )}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
+          <div className="relative bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <button onClick={() => setIsModalOpen(false)} className="absolute top-2 right-2 text-gray-700">
+              <FaTimes size={20} />
+            </button>
+            <h3 className="text-lg font-semibold mb-4">Anda Pengguna atau Admin?</h3>
+            <div className="flex justify-around">
+              <button onClick={() => handleUserChoice('admin')} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                Admin
+              </button>
+              <button onClick={() => handleUserChoice('user')} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-300">
+                Pelanggan
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

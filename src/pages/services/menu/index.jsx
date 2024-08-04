@@ -10,7 +10,7 @@ export const Menu = () => {
   };
 
   const handleNext = () => {
-    navigate(1);
+    navigate('/register');
   };
 
   const tabs = [
@@ -256,23 +256,25 @@ export const Menu = () => {
   return (
     <div className="min-h-screen bg-black text-white font-marck-script">
       <div className="max-w-4xl mx-auto p-4">
-        <div className="flex justify-between mb-4">
-          <button onClick={handleBack} className="bg-blue-600 text-white py-2 px-4 rounded">
+        <div className="flex flex-col md:flex-row justify-between mb-4">
+          <button onClick={handleBack} className="bg-blue-600 text-white py-2 px-4 rounded mb-2 md:mb-0">
             Kembali
           </button>
           <button onClick={handleNext} className="bg-blue-600 text-white py-2 px-4 rounded">
             Selanjutnya
           </button>
         </div>
-        <h1 className="text-4xl text-center mb-6">Menu Rumah Makan Maharasa</h1>
-        <div className="tabs-container flex justify-center overflow-x-auto whitespace-nowrap py-2">
-          {tabs.map((tab, index) => (
-            <button key={index} onClick={() => setActiveTab(index)} className={`px-4 py-2 ${activeTab === index ? 'bg-blue-600 active' : 'bg-gray-700'} text-white rounded-lg mx-2`}>
-              {tab.title}
-            </button>
-          ))}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl text-center mb-6">Menu Rumah Makan Maharasa</h1>
+        <div className="tabs-container overflow-x-auto py-2">
+          <div className="flex justify-center space-x-2">
+            {tabs.map((tab, index) => (
+              <button key={index} onClick={() => setActiveTab(index)} className={`px-4 py-2 ${activeTab === index ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'} rounded-lg`}>
+                {tab.title}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="tab-content">{tabs[activeTab].content}</div>
+        <div className="tab-content mt-4">{tabs[activeTab].content}</div>
       </div>
     </div>
   );

@@ -98,3 +98,24 @@ html {
     font-size: 14px;
   }
 }
+
+.slick-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.slick-slide img {
+  width: 100%;
+  height: auto;
+}
+
+.slick-dots {
+  bottom: -30px; /* Adjust position if needed */
+}
+
+.slick-prev,
+.slick-next {
+  width: 30px;
+  height: 30px;
+  z-index: 1;
+}
