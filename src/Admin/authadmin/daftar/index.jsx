@@ -88,7 +88,10 @@ export const Daftar = () => {
       <motion.div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md mx-4 border border-gray-200" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
         <h2 className="text-2xl mb-4 font-bold text-center text-gray-800">Daftar Admin</h2>
         <p className="text-center mb-6 text-gray-600">
-          <Link to="/Masuk" className="text-blue-500 hover:underline"></Link>
+          Already have an account?{' '}
+          <Link to="/Masuk" className="text-blue-500 hover:underline">
+            Masuk
+          </Link>
         </p>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>

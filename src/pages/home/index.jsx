@@ -29,6 +29,7 @@ export const Home = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          vertical: true, // Make the slider vertical on small screens
         },
       },
       {
@@ -36,6 +37,7 @@ export const Home = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          vertical: true, // Make the slider vertical on very small screens
         },
       },
     ],
@@ -65,8 +67,7 @@ export const Home = () => {
           </div>
         </div>
 
-        {/* Rest of the page */}
-        <section className="py-12 text-center bg-white bg-opacity-50">
+        <section className="py-12 text-center bg-white bg-opacity-50 px-4 sm:px-6 md:px-8 lg:px-12">
           <h2 className="text-3xl font-bold font-Poppins">Now Open</h2>
           <p className="mt-4 text-3xl font-bold font-Poppins">Rumah Makan Maharasa</p>
           <p className="text-xl font-semibold font-Poppins mt-2">Alamat: Tarogong, South Tarogong, Garut Regency, West Java</p>
