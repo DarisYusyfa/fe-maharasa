@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useState } from 'react';
 import axios from 'axios';
@@ -10,24 +10,34 @@ export const Masuk = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  // Kredensial tetap (username dan password tetap)
+  const fixedEmail = 'maharasa@gmail.com';
+  const fixedPassword = 'maharasagarut123';
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const submit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}auth/signin`, { email, password });
-      if (!response.data.error) {
-        localStorage.setItem('googleAuthToken', response.data.token);
-        navigate('/pemesanan');
-      } else {
-        alert(response.data.message);
+    // Validasi email dan password tetap
+    if (email === fixedEmail && password === fixedPassword) {
+      try {
+        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}auth/signin`, { email, password });
+        if (!response.data.error) {
+          localStorage.setItem('googleAuthToken', response.data.token);
+          navigate('/pemesanan');
+        } else {
+          alert(response.data.message);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      alert('Email atau password salah!');
     }
   };
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
       <motion.div
@@ -40,12 +50,6 @@ export const Masuk = () => {
       <motion.div className="flex items-center justify-center w-full md:w-1/2 p-4 mt-16 md:mt-0" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
         <motion.div className="bg-white p-8 rounded-xl shadow-lg w-full md:w-4/5 lg:w-2/3 border border-gray-200" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.4 }}>
           <h2 className="text-2xl mb-4 font-bold text-center text-gray-800">Login Admin</h2>
-          <p className="text-center mb-6 text-gray-600">
-            Belum punya akun?{' '}
-            <Link to="/daftar" className="text-blue-500 hover:underline">
-              Daftar
-            </Link>
-          </p>
           <form className="space-y-6" onSubmit={submit}>
             <div>
               <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">

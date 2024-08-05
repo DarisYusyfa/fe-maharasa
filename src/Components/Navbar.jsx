@@ -20,7 +20,7 @@ const Navbar = () => {
   const handleUserChoice = (role) => {
     setIsModalOpen(false);
     if (role === 'admin') {
-      navigate('/Daftar');
+      navigate('/masuk');
     } else {
       navigate('/register');
     }

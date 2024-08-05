@@ -12,7 +12,6 @@ import { Reservasi } from './pages/services/reservasi/index.jsx';
 import { Menu } from './pages/services/menu/index.jsx';
 import { Event } from './pages/services/event/index.jsx';
 import { Pemesanan } from './Admin/pemesanan/index.jsx';
-import { Daftar } from './Admin/authadmin/daftar/index.jsx';
 import { Masuk } from './Admin/authadmin/masuk/index.jsx';
 import ProtectedRoute from './Components/ProtectedRoute.jsx';
 import Confirmation from './Components/Confirmation.jsx';
@@ -59,10 +58,6 @@ export const Router = createBrowserRouter([
   {
     path: '/pemesanan',
     element: <Pemesanan />,
-  },
-  {
-    path: '/daftar',
-    element: <Daftar />,
   },
   {
     path: '/masuk',
