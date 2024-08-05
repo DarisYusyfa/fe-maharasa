@@ -48,7 +48,7 @@ export const Home = () => {
     <>
       <Navbar />
       <div id="home" className="bg-gray-300 overflow-hidden">
-        <div className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen p-6 md:p-12 bg-gray-300 overflow-hidden">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen p-6 md:p-12 bg-transparent overflow-hidden">
           {/* Deskripsi */}
           <div className="text-center md:text-left max-w-3xl px-4 md:px-8">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">Sajian Lezat, Kenangan Tak Terlupakan</h1>

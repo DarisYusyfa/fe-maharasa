@@ -265,10 +265,10 @@ export const Menu = () => {
           </button>
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl text-center mb-6">Menu Rumah Makan Maharasa</h1>
-        <div className="tabs-container overflow-x-auto py-2">
-          <div className="flex justify-center space-x-2">
+        <div className="tabs-wrapper overflow-x-auto py-2">
+          <div className="flex space-x-2 px-4">
             {tabs.map((tab, index) => (
-              <button key={index} onClick={() => setActiveTab(index)} className={`px-4 py-2 ${activeTab === index ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'} rounded-lg`}>
+              <button key={index} onClick={() => setActiveTab(index)} className={`px-4 py-2 flex-shrink-0 ${activeTab === index ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'} rounded-lg`}>
                 {tab.title}
               </button>
             ))}

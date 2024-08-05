@@ -38,16 +38,16 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex items-center space-x-2"></div>
         <div className="hidden md:flex space-x-8">
-          <a href="/#home" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+          <a href="/#home" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium">
             Home
           </a>
-          <a href="/#About" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+          <a href="/#About" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium">
             About
           </a>
-          <a href="/#Fasilitas" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+          <a href="/#Fasilitas" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium">
             Fasilitas
           </a>
-          <a href="/#contact" className="text-gray-600 hover:text-gray-900 transition-colors duration-300">
+          <a href="/#contact" className="text-gray-600 hover:text-gray-900 transition-colors duration-300 font-medium">
             Contact
           </a>
         </div>
@@ -68,7 +68,7 @@ const Navbar = () => {
               Keluar
             </button>
           ) : (
-            <button onClick={handleReservasiClick} className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300 mr-3">
+            <button onClick={handleReservasiClick} className="bg-blue-500 text-white px-4 py-2 rounded-sm hover:bg-blue-700 transition-colors duration-300 mr-3">
               Reservasi Sekarang →
             </button>
           )}
@@ -99,7 +99,7 @@ const Navbar = () => {
               Keluar
             </button>
           ) : (
-            <button onClick={handleReservasiClick} className="block bg-blue-500 text-white px-4 py-2 rounded-full text-center mt-2 hover:bg-blue-700 transition-colors duration-300">
+            <button onClick={handleReservasiClick} className="block bg-blue-500 text-white px-4 py-2 rounded-md text-center mt-2 hover:bg-blue-700 transition-colors duration-300">
               Reservasi Sekarang →
             </button>
           )}
@@ -113,10 +113,10 @@ const Navbar = () => {
             </button>
             <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">Masuk Sebagai Pelanggan Admin?</h3>
             <div className="flex justify-around mt-4">
-              <button onClick={() => handleUserChoice('user')} className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors duration-300">
+              <button onClick={() => handleUserChoice('user')} className="bg-green-500 text-white px-4 py-2 rounded-sm hover:bg-green-700 transition-colors duration-300">
                 Pelanggan
               </button>
-              <button onClick={() => handleUserChoice('admin')} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-300">
+              <button onClick={() => handleUserChoice('admin')} className="bg-blue-500 text-white px-4 py-2 rounded-sm hover:bg-blue-700 transition-colors duration-300">
                 Admin
               </button>
             </div>
