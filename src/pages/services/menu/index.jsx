@@ -261,7 +261,7 @@ export const Menu = () => {
             Kembali
           </button>
           <button onClick={handleNext} className="bg-blue-600 text-white py-2 px-4 rounded">
-            Selanjutnya
+            Reservasi Sekarang
           </button>
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl text-center mb-6">Menu Rumah Makan Maharasa</h1>

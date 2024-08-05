@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -21,15 +20,15 @@ export const Home = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    autoplay: true, // Enable autoplay
-    autoplaySpeed: 3000, // Adjust the speed (in milliseconds) of slide changes
+    autoplay: true,
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          vertical: true, // Make the slider vertical on small screens
+          vertical: true,
         },
       },
       {
@@ -37,7 +36,7 @@ export const Home = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          vertical: true, // Make the slider vertical on very small screens
+          vertical: true,
         },
       },
     ],
@@ -76,33 +75,40 @@ export const Home = () => {
         </section>
 
         <section id="Fasilitas" className="py-12 bg-white bg-opacity-50" data-aos="fade-up">
-          <div className="max-w-6xl mx-auto p-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-gray-100 rounded-t-2xl shadow-xl overflow-hidden" data-aos="fade-up">
-              <img src="/assets/ruang.png" alt="VIP Room" className="w-full h-48 object-cover p-2 rounded-2xl shadow-2xl" />
-              <div className="p-4">
-                <h3 className="text-xl font-bold">Ruang VIP</h3>
-                <p className="mt-2">Ruang VIP di Rumah Makan Maharasa menawarkan privasi dan kenyamanan ekstra.</p>
-              </div>
+          <div className="max-w-6xl mx-auto p-2">
+            {/* Notifikasi Scroll */}
+            <div className="block md:hidden text-center text-gray-500 mb-4">
+              <p>Geser untuk melihat fasilitas</p>
             </div>
-            <div className="bg-gray-100 rounded shadow-lg overflow-hidden rounded-t-2xl">
-              <img src="/assets/ruang2.png" alt="Dining Area" className="w-full h-48 object-cover p-2 rounded-2xl shadow-2xl" />
-              <div className="p-4">
-                <h3 className="text-xl font-bold">Ruang Besar</h3>
-                <p className="mt-2">Ruangan ini luas dan dilengkapi dengan meja besar serta kursi empuk, ideal untuk menjamu keluarga besar.</p>
+
+            <div className="flex overflow-x-scroll md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible space-x-4 md:space-x-0">
+              <div className="min-w-full md:min-w-0 bg-gray-100 rounded-t-2xl shadow-xl overflow-hidden">
+                <img src="/assets/ruang.png" alt="VIP Room" className="w-full h-48 object-cover p-2 rounded-2xl shadow-2xl" />
+                <div className="p-4">
+                  <h3 className="text-xl font-bold">Ruang VIP</h3>
+                  <p className="mt-2">Ruang VIP di Rumah Makan Maharasa menawarkan privasi dan kenyamanan ekstra.</p>
+                </div>
               </div>
-            </div>
-            <div className="bg-gray-100 rounded shadow-lg overflow-hidden rounded-t-2xl">
-              <img src="/assets/ruang3.png" alt="Traditional Decoration" className="w-full h-48 object-cover p-2 rounded-2xl shadow-2xl" />
-              <div className="p-4">
-                <h3 className="text-xl font-bold">Dekorasi Tradisional</h3>
-                <p className="mt-2">Dengan dekorasi tradisional yang khas, meja-meja yang teratur rapi, dan kursi-kursi nyaman.</p>
+              <div className="min-w-full md:min-w-0 bg-gray-100 rounded-t-2xl shadow-xl overflow-hidden">
+                <img src="/assets/ruang2.png" alt="Dining Area" className="w-full h-48 object-cover p-2 rounded-2xl shadow-2xl" />
+                <div className="p-4">
+                  <h3 className="text-xl font-bold">Ruang Besar</h3>
+                  <p className="mt-2">Ruangan ini luas dan dilengkapi dengan meja besar serta kursi empuk, ideal untuk menjamu keluarga besar.</p>
+                </div>
               </div>
-            </div>
-            <div className="bg-gray-100 rounded shadow-lg overflow-hidden rounded-t-2xl">
-              <img src="/assets/ruang4.png" alt="Outdoor Area" className="w-full h-48 object-cover p-2 rounded-2xl shadow-2xl" />
-              <div className="p-4">
-                <h3 className="text-xl font-bold">Area Outdoor</h3>
-                <p className="mt-2">Dengan dekorasi tradisional yang khas, meja-meja yang teratur rapi dan kursi-kursi nyaman tersusun dengan indah.</p>
+              <div className="min-w-full md:min-w-0 bg-gray-100 rounded-t-2xl shadow-xl overflow-hidden">
+                <img src="/assets/ruang3.png" alt="Traditional Decoration" className="w-full h-48 object-cover p-2 rounded-2xl shadow-2xl" />
+                <div className="p-4">
+                  <h3 className="text-xl font-bold">Dekorasi Tradisional</h3>
+                  <p className="mt-2">Dengan dekorasi tradisional yang khas, meja-meja yang teratur rapi, dan kursi-kursi nyaman.</p>
+                </div>
+              </div>
+              <div className="min-w-full md:min-w-0 bg-gray-100 rounded-t-2xl shadow-xl overflow-hidden">
+                <img src="/assets/ruang4.png" alt="Outdoor Area" className="w-full h-48 object-cover p-2 rounded-2xl shadow-2xl" />
+                <div className="p-4">
+                  <h3 className="text-xl font-bold">Area Outdoor</h3>
+                  <p className="mt-2">Dengan dekorasi tradisional yang khas, meja-meja yang teratur rapi dan kursi-kursi nyaman tersusun dengan indah.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -111,8 +117,6 @@ export const Home = () => {
         {/* Menu Section */}
         <section className="px-6 bg-gray-200 relative flex flex-col items-center py-12 lg:flex-row lg:justify-end lg:items-start" style={{ fontFamily: 'Times New Roman' }}>
           <div className="lg:w-1/2 text-center lg:text-left max-w-xl mb-8 lg:mb-0 mt-8">
-            {' '}
-            {/* Added margin-top */}
             <h1 className="text-3xl font-bold mb-6">
               MENU <br />
               YANG TERSEDIA

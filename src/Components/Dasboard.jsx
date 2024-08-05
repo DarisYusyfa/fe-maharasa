@@ -1,43 +1,20 @@
-import { useState, useEffect, useRef } from "react";
-import { FiFilter, FiMenu, FiX } from "react-icons/fi";
-import {
-  AiFillEdit,
-  AiFillDelete,
-  AiOutlineLogout,
-  AiOutlineExport,
-  AiOutlineShareAlt,
-} from "react-icons/ai";
-import { FaUserCircle } from "react-icons/fa";
-import { Bar, Doughnut } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-} from "chart.js";
-import { saveAs } from "file-saver";
-import { Button, Modal, Table } from "flowbite-react";
-import axios from "axios";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { useState, useEffect, useRef } from 'react';
+import { FiFilter, FiMenu, FiX } from 'react-icons/fi';
+import { AiFillEdit, AiFillDelete, AiOutlineLogout, AiOutlineExport, AiOutlineShareAlt } from 'react-icons/ai';
+import { FaUserCircle } from 'react-icons/fa';
+import { Bar, Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { saveAs } from 'file-saver';
+import { Button, Modal } from 'flowbite-react';
+import axios from 'axios';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 const Dashboard = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [dataType, setDataType] = useState("dashboard");
+  const [dataType, setDataType] = useState('dashboard');
   const [reservasi, setReservasi] = useState([]);
   const [cardDatas, setCardDatas] = useState([]);
   const dropdownRef = useRef(null);
@@ -46,9 +23,7 @@ const Dashboard = () => {
   // console.log(idReservation);
   const reservation = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}reservation`
-      );
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}reservation`);
       setReservasi(response.data.data);
       console.log(response.data.data);
     } catch (error) {
@@ -57,22 +32,18 @@ const Dashboard = () => {
   };
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(
-        `${import.meta.env.VITE_API_BASE_URL}reservation/${idReservation}`
-      );
+      const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}reservation/${idReservation}`);
       console.log(response.data);
       setOpenModal(false);
       window.location.reload();
-      setDataType("reservasi");
+      setDataType('reservasi');
     } catch (error) {
       console.log(error);
     }
   };
   const cardData = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}dashboard/card-data`
-      );
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}dashboard/card-data`);
       setCardDatas(response.data);
       console.log(response.data);
     } catch (error) {
@@ -89,13 +60,13 @@ const Dashboard = () => {
     };
 
     if (isDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isDropdownOpen]);
 
@@ -105,69 +76,69 @@ const Dashboard = () => {
   };
 
   const handleExport = () => {
-    const blob = new Blob(["Hello, world!"], {
-      type: "text/plain;charset=utf-8",
+    const blob = new Blob(['Hello, world!'], {
+      type: 'text/plain;charset=utf-8',
     });
-    saveAs(blob, "dashboard_data.txt");
+    saveAs(blob, 'dashboard_data.txt');
   };
 
   const handleShare = () => {
     if (navigator.share) {
       navigator
         .share({
-          title: "Dashboard Data",
-          text: "Check out this data from the dashboard",
+          title: 'Dashboard Data',
+          text: 'Check out this data from the dashboard',
           url: window.location.href,
         })
         .then(() => {
-          console.log("Thanks for sharing!");
+          console.log('Thanks for sharing!');
         })
         .catch((err) => {
-          console.error("Error sharing:", err);
+          console.error('Error sharing:', err);
         });
     } else {
-      console.log("Share not supported on this browser, do it the old way.");
+      console.log('Share not supported on this browser, do it the old way.');
       // Add fallback for browsers that don't support Web Share API
     }
   };
 
   const barData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
     datasets: [
       {
-        label: "Penjualan",
+        label: 'Penjualan',
         data: [50, 70, 60, 90, 50],
-        backgroundColor: "rgba(0, 0, 255, 0.5)",
-        borderColor: "rgba(0, 0, 255, 1)",
+        backgroundColor: 'rgba(0, 0, 255, 0.5)',
+        borderColor: 'rgba(0, 0, 255, 1)',
         borderWidth: 1,
       },
       {
-        label: "Pemesanan",
+        label: 'Pemesanan',
         data: [80, 100, 70, 60, 90],
-        backgroundColor: "rgba(128, 0, 128, 0.5)",
-        borderColor: "rgba(128, 0, 128, 1)",
+        backgroundColor: 'rgba(128, 0, 128, 0.5)',
+        borderColor: 'rgba(128, 0, 128, 1)',
         borderWidth: 1,
       },
       {
-        label: "Reservasi",
+        label: 'Reservasi',
         data: [60, 90, 70, 60, 100],
-        backgroundColor: "rgba(0, 255, 0, 0.5)",
-        borderColor: "rgba(0, 255, 0, 1)",
+        backgroundColor: 'rgba(0, 255, 0, 0.5)',
+        borderColor: 'rgba(0, 255, 0, 1)',
         borderWidth: 1,
       },
     ],
   };
 
   const barOptions = {
-    indexAxis: "y",
+    indexAxis: 'y',
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: 'top',
       },
       title: {
         display: true,
-        text: "Total Data Keseluruhan",
+        text: 'Total Data Keseluruhan',
       },
     },
     scales: {
@@ -179,12 +150,12 @@ const Dashboard = () => {
   };
 
   const doughnutData = {
-    labels: ["Pemesanan", "Penjualan", "Reservasi", "Pelanggan"],
+    labels: ['Pemesanan', 'Penjualan', 'Reservasi', 'Pelanggan'],
     datasets: [
       {
         data: [25, 50, 15, 10],
-        backgroundColor: ["#8c9eff", "#8c009f", "#ffc0cb", "#80e27e"],
-        hoverBackgroundColor: ["#536dfe", "#6a0080", "#ff9eaa", "#56c28c"],
+        backgroundColor: ['#8c9eff', '#8c009f', '#ffc0cb', '#80e27e'],
+        hoverBackgroundColor: ['#536dfe', '#6a0080', '#ff9eaa', '#56c28c'],
       },
     ],
   };
@@ -193,7 +164,7 @@ const Dashboard = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        position: 'top',
       },
     },
     maintainAspectRatio: false,
@@ -201,57 +172,34 @@ const Dashboard = () => {
 
   return (
     <div className="flex min-h-screen">
-      <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-100 p-4 transition-transform transform ${
-          isNavOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0`}
-      >
+      <aside className={`fixed top-0 left-0 h-full w-64 bg-gray-100 p-4 transition-transform transform ${isNavOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         <div className="flex items-center mb-8">
-          <img
-            src="/assets/logoadmin.png"
-            alt="Logo"
-            className="h-13 w-13 mr-1"
-          />
+          <img src="/assets/logoadmin.png" alt="Logo" className="h-13 w-13 mr-1" />
         </div>
         <nav>
           <ul>
             <li className="mb-4">
-              <button
-                onClick={() => handleMenuClick("dashboard")}
-                className="flex items-center text-gray-700 hover:text-black"
-              >
+              <button onClick={() => handleMenuClick('dashboard')} className="flex items-center text-gray-700 hover:text-black">
                 <span className="mr-2">🏠</span>Dashboard
               </button>
             </li>
             <li className="mb-4">
-              <button
-                onClick={() => handleMenuClick("pemesanan")}
-                className="flex items-center text-gray-700 hover:text-black"
-              >
+              <button onClick={() => handleMenuClick('pemesanan')} className="flex items-center text-gray-700 hover:text-black">
                 <span className="mr-2">📋</span>Pemesanan
               </button>
             </li>
             <li className="mb-4">
-              <button
-                onClick={() => handleMenuClick("penjualan")}
-                className="flex items-center text-gray-700 hover:text-black"
-              >
+              <button onClick={() => handleMenuClick('penjualan')} className="flex items-center text-gray-700 hover:text-black">
                 <span className="mr-2">💲</span>Penjualan
               </button>
             </li>
             <li className="mb-4">
-              <button
-                onClick={() => handleMenuClick("reservasi")}
-                className="flex items-center text-gray-700 hover:text-black"
-              >
+              <button onClick={() => handleMenuClick('reservasi')} className="flex items-center text-gray-700 hover:text-black">
                 <span className="mr-2">📅</span>Reservasi
               </button>
             </li>
             <li className="mb-4">
-              <button
-                onClick={() => handleMenuClick("pelanggan")}
-                className="flex items-center text-gray-700 hover:text-black"
-              >
+              <button onClick={() => handleMenuClick('pelanggan')} className="flex items-center text-gray-700 hover:text-black">
                 <span className="mr-2">👤</span>Pelanggan
               </button>
             </li>
@@ -259,48 +207,18 @@ const Dashboard = () => {
         </nav>
       </aside>
 
-      <main
-        className={`flex-1 p-4 bg-white transition-all duration-300 ${
-          isNavOpen ? "ml-64" : "ml-0 lg:ml-64"
-        }`}
-      >
+      <main className={`flex-1 p-4 bg-white transition-all duration-300 ${isNavOpen ? 'ml-64' : 'ml-0 lg:ml-64'}`}>
         <header className="flex justify-between items-center mb-8 border-b-2 pb-4">
-          <div className="lg:hidden">
-            {isNavOpen ? (
-              <FiX
-                className="text-2xl cursor-pointer"
-                onClick={() => setIsNavOpen(false)}
-              />
-            ) : (
-              <FiMenu
-                className="text-2xl cursor-pointer"
-                onClick={() => setIsNavOpen(true)}
-              />
-            )}
-          </div>
-          <div className="flex-1"></div>{" "}
-          {/* This div will push the next div to the right on larger screens */}
+          <div className="lg:hidden">{isNavOpen ? <FiX className="text-2xl cursor-pointer" onClick={() => setIsNavOpen(false)} /> : <FiMenu className="text-2xl cursor-pointer" onClick={() => setIsNavOpen(true)} />}</div>
+          <div className="flex-1"></div> {/* This div will push the next div to the right on larger screens */}
           <div className="flex items-center text-sm relative">
-            <FaUserCircle
-              className="text-xl text-gray-700 cursor-pointer"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            />
-            <span
-              className="ml-2 text-md lg:text-xl cursor-pointer"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
+            <FaUserCircle className="text-xl text-gray-700 cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)} />
+            <span className="ml-2 text-md lg:text-xl cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
               Admin
             </span>
             {isDropdownOpen && (
-              <div
-                ref={dropdownRef}
-                className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg"
-              >
-                <a
-                  href="/masuk"
-                  className="flex items-center p-2 text-gray-700 hover:bg-gray-100"
-                  onClick={() => setIsDropdownOpen(false)}
-                >
+              <div ref={dropdownRef} className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg">
+                <a href="/masuk" className="flex items-center p-2 text-gray-700 hover:bg-gray-100" onClick={() => setIsDropdownOpen(false)}>
                   <AiOutlineLogout className="mr-2" /> Logout
                 </a>
               </div>
@@ -308,22 +226,14 @@ const Dashboard = () => {
           </div>
         </header>
 
-        {dataType === "dashboard" && (
+        {dataType === 'dashboard' && (
           <div>
-            <h1 className="text-[2rem] font-semibold font-Lusitana pb-2 mb-4">
-              Dashboard
-            </h1>
+            <h1 className="text-[2rem] font-semibold font-Lusitana pb-2 mb-4">Dashboard</h1>
             <div className="flex justify-end space-x-4 mb-4">
-              <button
-                onClick={handleExport}
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center"
-              >
+              <button onClick={handleExport} className="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center">
                 <AiOutlineExport className="mr-2" /> Export
               </button>
-              <button
-                onClick={handleShare}
-                className="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center"
-              >
+              <button onClick={handleShare} className="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center">
                 <AiOutlineShareAlt className="mr-2" /> Share
               </button>
             </div>
@@ -361,25 +271,15 @@ const Dashboard = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-              <div
-                className="bg-white border rounded-lg p-4 shadow-sm"
-                style={{ height: "400px" }}
-              >
-                <h2 className="text-lg font-semibold mb-2">
-                  Total Data Keseluruhan
-                </h2>
-                <div className="chart-container" style={{ height: "300px" }}>
+              <div className="bg-white border rounded-lg p-4 shadow-sm" style={{ height: '400px' }}>
+                <h2 className="text-lg font-semibold mb-2">Total Data Keseluruhan</h2>
+                <div className="chart-container" style={{ height: '300px' }}>
                   <Bar data={barData} options={barOptions} />
                 </div>
               </div>
-              <div
-                className="bg-white border rounded-lg p-4 shadow-sm"
-                style={{ height: "400px" }}
-              >
-                <h2 className="text-lg font-semibold mb-2">
-                  Total Data Keseluruhan
-                </h2>
-                <div className="chart-container" style={{ height: "300px" }}>
+              <div className="bg-white border rounded-lg p-4 shadow-sm" style={{ height: '400px' }}>
+                <h2 className="text-lg font-semibold mb-2">Total Data Keseluruhan</h2>
+                <div className="chart-container" style={{ height: '300px' }}>
                   <Doughnut data={doughnutData} options={doughnutOptions} />
                 </div>
               </div>
@@ -388,17 +288,13 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
               <div className="bg-white border rounded-lg p-4 shadow-sm col-start-2 row-start-2 lg:row-start-1">
                 <h2 className="text-lg font-semibold mb-2">Pelanggan</h2>
-                <div className="chart-container" style={{ height: "300px" }}>
+                <div className="chart-container" style={{ height: '300px' }}>
                   <table className="w-full table-auto border-collapse border border-gray-200">
                     <thead className="bg-gray-100">
                       <tr>
                         <th className="border border-gray-200 p-2">No</th>
-                        <th className="border border-gray-200 p-2">
-                          Pelanggan
-                        </th>
-                        <th className="border border-gray-200 p-2">
-                          Tanggal Bergabung
-                        </th>
+                        <th className="border border-gray-200 p-2">Pelanggan</th>
+                        <th className="border border-gray-200 p-2">Tanggal Bergabung</th>
                         <th className="border border-gray-200 p-2">Aksi</th>
                       </tr>
                     </thead>
@@ -406,36 +302,30 @@ const Dashboard = () => {
                       {[
                         {
                           no: 1,
-                          pelanggan: "Daris Yudifsa Kusuma",
-                          tanggal: "17-09-2024",
+                          pelanggan: 'Daris Yudifsa Kusuma',
+                          tanggal: '17-09-2024',
                         },
                         {
                           no: 2,
-                          pelanggan: "Rafdi Nur Kusuma",
-                          tanggal: "19-09-2024",
+                          pelanggan: 'Rafdi Nur Kusuma',
+                          tanggal: '19-09-2024',
                         },
                         {
                           no: 3,
-                          pelanggan: "Kusuma Febriadi",
-                          tanggal: "18-09-2024",
+                          pelanggan: 'Kusuma Febriadi',
+                          tanggal: '18-09-2024',
                         },
-                        { no: 4, pelanggan: "Fazlurr", tanggal: "20-09-2024" },
+                        { no: 4, pelanggan: 'Fazlurr', tanggal: '20-09-2024' },
                         {
                           no: 5,
-                          pelanggan: "Kirwan Hedian",
-                          tanggal: "27-09-2024",
+                          pelanggan: 'Kirwan Hedian',
+                          tanggal: '27-09-2024',
                         },
                       ].map((item) => (
                         <tr key={item.no}>
-                          <td className="border border-gray-200 p-2">
-                            {item.no}
-                          </td>
-                          <td className="border border-gray-200 p-2">
-                            {item.pelanggan}
-                          </td>
-                          <td className="border border-gray-200 p-2">
-                            {item.tanggal}
-                          </td>
+                          <td className="border border-gray-200 p-2">{item.no}</td>
+                          <td className="border border-gray-200 p-2">{item.pelanggan}</td>
+                          <td className="border border-gray-200 p-2">{item.tanggal}</td>
                           <td className="border border-gray-200 p-2">
                             <AiFillEdit className="inline mr-2 cursor-pointer" />
                             <AiFillDelete className="inline cursor-pointer" />
@@ -450,15 +340,11 @@ const Dashboard = () => {
           </div>
         )}
 
-        {dataType === "pemesanan" && (
+        {dataType === 'pemesanan' && (
           <div>
             <h1 className="text-2xl font-semibold pb-2 mb-4">Pemesanan</h1>
             <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Cari Pemesanan"
-                className="px-4 py-2 border rounded-lg w-full lg:w-auto"
-              />
+              <input type="text" placeholder="Cari Pemesanan" className="px-4 py-2 border rounded-lg w-full lg:w-auto" />
             </div>
             <div className="lg:flex lg:space-x-4">
               <div className="overflow-x-auto w-full lg:w-2/3">
@@ -506,12 +392,8 @@ const Dashboard = () => {
                   <h1 className="text-xl font-semibold mb-4">Produk terjual</h1>
                   <div className="flex justify-between items-center mb-4">
                     <div className="flex space-x-4">
-                      <span className="font-semibold cursor-pointer">
-                        Kategori
-                      </span>
-                      <span className="font-semibold cursor-pointer">
-                        Produk
-                      </span>
+                      <span className="font-semibold cursor-pointer">Kategori</span>
+                      <span className="font-semibold cursor-pointer">Produk</span>
                     </div>
                     <button className="text-xl">
                       <FiFilter />
@@ -550,15 +432,11 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-        {dataType === "penjualan" && (
+        {dataType === 'penjualan' && (
           <div>
             <h1 className="text-2xl font-semibold pb-2 mb-4">Penjualan</h1>
             <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Cari Penjualan"
-                className="px-4 py-2 border rounded-lg w-full lg:w-auto"
-              />
+              <input type="text" placeholder="Cari Penjualan" className="px-4 py-2 border rounded-lg w-full lg:w-auto" />
             </div>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse lg:table">
@@ -609,69 +487,54 @@ const Dashboard = () => {
           </div>
         )}
 
-        {dataType === "reservasi" && (
-          <div>
+        {dataType === 'reservasi' && (
+          <div className="p-4 sm:p-6">
             <h1 className="text-2xl font-semibold pb-2 mb-4">Reservasi</h1>
             <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Cari Reservasi"
-                className="px-4 py-2 border rounded-lg w-full lg:w-auto"
-              />
+              <input type="text" placeholder="Cari Reservasi" className="px-4 py-2 border rounded-lg w-full" />
             </div>
             <div className="overflow-x-auto">
-              <Table>
-                <Table.Head>
-                  <Table.HeadCell>No Meja</Table.HeadCell>
-                  <Table.HeadCell>Customer</Table.HeadCell>
-                  <Table.HeadCell>Jam</Table.HeadCell>
-                  <Table.HeadCell>Tanggal Pemesanan</Table.HeadCell>
-                  <Table.HeadCell>Jumlah Orang</Table.HeadCell>
-                  <Table.HeadCell>Aksi</Table.HeadCell>
-
-                  <Table.HeadCell>
-                    <span className="sr-only">Edit</span>
-                  </Table.HeadCell>
-                </Table.Head>
-                <Table.Body className="divide-y bg-slate-600">
-                  {reservasi.map((reservasi, idx) => (
-                    <Table.Row key={idx} className="bg-white ">
-                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900">
-                        {reservasi.desk_id}
-                      </Table.Cell>
-                      <Table.Cell>{reservasi.name}</Table.Cell>
-                      <Table.Cell>{reservasi.reservation_time}</Table.Cell>
-                      <Table.Cell>{reservasi.reservation_date}</Table.Cell>
-                      <Table.Cell>{reservasi.number_of_people}</Table.Cell>
-                      <Table.Cell>
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No Meja</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jam</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Pemesanan</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah Orang</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {reservasi.map((item, idx) => (
+                    <tr key={idx}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{item.desk_id}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.name}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.reservation_time}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.reservation_date}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.number_of_people}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <button
                           onClick={() => {
-                            setIdReservation(reservasi.id);
+                            setIdReservation(item.id);
                             setOpenModal(true);
                           }}
-                          className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
+                          className="text-cyan-600 hover:underline"
                         >
                           Hapus
                         </button>
-                      </Table.Cell>
-                    </Table.Row>
+                      </td>
+                    </tr>
                   ))}
-                </Table.Body>
-              </Table>
+                </tbody>
+              </table>
             </div>
-            <Modal
-              show={openModal}
-              size="md"
-              onClose={() => setOpenModal(false)}
-              popup
-            >
+            <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
               <Modal.Header />
               <Modal.Body>
                 <div className="text-center">
-                  <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-                  <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                    Apakah anda yakin ingin menghapus data ini?
-                  </h3>
+                  <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400" />
+                  <h3 className="mb-5 text-lg font-normal text-gray-500">Apakah anda yakin ingin menghapus data ini?</h3>
                   <div className="flex justify-center gap-4">
                     <Button color="failure" onClick={() => handleDelete()}>
                       Ya
@@ -686,15 +549,11 @@ const Dashboard = () => {
           </div>
         )}
 
-        {dataType === "pelanggan" && (
+        {dataType === 'pelanggan' && (
           <div>
             <h1 className="text-2xl font-semibold pb-2 mb-4">Pelanggan</h1>
             <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Cari Pelanggan"
-                className="px-4 py-2 border rounded-lg w-full lg:w-auto"
-              />
+              <input type="text" placeholder="Cari Pelanggan" className="px-4 py-2 border rounded-lg w-full lg:w-auto" />
             </div>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse lg:table">
