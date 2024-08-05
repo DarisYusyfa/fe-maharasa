@@ -111,7 +111,7 @@ const Navbar = () => {
             <button onClick={() => setIsModalOpen(false)} className="absolute top-2 right-2 text-gray-700 hover:text-gray-900">
               <FaTimes size={20} />
             </button>
-            <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">Masuk Sebagai Pelanggan Admin?</h3>
+            <h3 className="text-lg font-semibold mb-4 text-center text-gray-800">Masuk Sebagai</h3>
             <div className="flex justify-around mt-4">
               <button onClick={() => handleUserChoice('user')} className="bg-green-500 text-white px-4 py-2 rounded-sm hover:bg-green-700 transition-colors duration-300">
                 Pelanggan
