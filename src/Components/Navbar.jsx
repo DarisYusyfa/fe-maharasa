@@ -31,14 +31,9 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-200 shadow-md py-4 fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="md:hidden mx-3 flex items-center">
-          <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
-            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
-        </div>
         <div className="flex items-center space-x-2">
           <div>
-            <span className="text-gray-800 text-xl font-bold pr-3 font-Lusitana">RM MAHARASA</span>
+            <span className="text-gray-800 text-xl font-bold pl-3 font-Lusitana">RM MAHARASA</span>
           </div>
         </div>
         <div className="hidden md:flex items-center space-x-2"></div>
@@ -56,6 +51,11 @@ const Navbar = () => {
             Contact
           </a>
         </div>
+        <div className="md:hidden mx-3 flex items-center">
+          <button onClick={toggleMenu} className="text-gray-700 focus:outline-none">
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
         <div className="hidden md:block">
           {isLoggedIn && isServicePage ? (
             <button
@@ -68,7 +68,7 @@ const Navbar = () => {
               Keluar
             </button>
           ) : (
-            <button onClick={handleReservasiClick} className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300">
+            <button onClick={handleReservasiClick} className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300 mr-3">
               Reservasi Sekarang →
             </button>
           )}
